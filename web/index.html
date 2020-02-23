@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Web chat using SocketIO and python SocketIO implementation">
+    <meta name="keywords" content="HTML,CSS,JavaScript,Chat,SocketIO,Python,Messages">
+    <meta name="author" content="Daniel Różycki">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vendor/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <title>Web Chat</title>
+</head>
+<body class="vh-100">
+
+    <div class="container h-100">
+
+        <div id="username_container" class="row h-100 justify-content-center align-items-center" style="opacity: 1;">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="card text-center border-success p-2">
+                    <h5 class="card-title">Pick Your username</h5>
+                    <div class="card-body">
+                        <input id="username" type="text" class="form-control form-control-sm text-center">
+                        <span id="username_not_avaiable" class="text-danger mb-4" style="display: none;">Username already exist</span><br>
+                        <span id="username_empty" class="text-danger mb-4" style="display: none;">Username is empty</span><br>
+                        <button id="username_submit" type="button" class="btn btn-sm btn-success">Submit</button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div id="chat_container" class="row h-100 justify-content-center align-items-center" style="opacity: 0.1; display: none;">
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 h-75 border border-success rounded my-0" style="overflow: auto;">
+
+            </div>
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 h-10 border border-success rounded my-0 p-0">
+                <div class="input-group">
+                    <textarea id="chat_message" type="text" class="form-control"></textarea>
+                    <button id="username_submit" type="button" class="btn btn-success">Submit</button>
+                  </div>
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+<script src="vendor/node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="js/main.js"></script>
+</html>
