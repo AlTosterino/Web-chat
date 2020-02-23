@@ -7,6 +7,7 @@
     <meta name="author" content="Daniel Różycki">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="vendor/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.css">
     <title>Web Chat</title>
 </head>
 <body class="vh-100">
@@ -77,6 +78,13 @@
 </div>
 
 </body>
-<script src="vendor/node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="vendor/node_modules/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $("#chat_message_input").emojioneArea();
+  });
+  </script>
+<script type="text/javascript" src="https://rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.js"></script>
+<script src="vendor/node_modules/socket.io-client/dist/socket.io.slim.js"></script>
 <script src="js/main.js"></script>
 </html>
