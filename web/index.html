@@ -79,12 +79,20 @@
 
 </body>
 <script src="vendor/node_modules/jquery/dist/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-    $("#chat_message_input").emojioneArea();
-  });
-  </script>
 <script type="text/javascript" src="https://rawgit.com/mervick/emojionearea/master/dist/emojionearea.min.js"></script>
 <script src="vendor/node_modules/socket.io-client/dist/socket.io.slim.js"></script>
 <script src="js/main.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#chat_message_input").emojioneArea({
+            events: {
+                keyup: (editor, event) => {
+                    if (event.keyCode == 13){
+                        check_message(chat_message_input.value);
+                    }
+                }
+            }
+        });
+    });
+  </script>
 </html>

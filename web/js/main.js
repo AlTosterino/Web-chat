@@ -133,12 +133,6 @@ username_submit.addEventListener("click", _ => {
     check_username(username_input.value);
 });
 
-chat_message_input.addEventListener("keyup", _ => {
-    if (event.keyCode == 13){
-        check_message(chat_message_input.value);
-    }
-});
-
 chat_message_submit.addEventListener("click", _ => {
         check_message(chat_message_input.value);
 });
