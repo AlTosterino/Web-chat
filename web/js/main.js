@@ -5,6 +5,10 @@ var username_container = document.getElementById("username_container");
 var username_input = document.getElementById("username");
 var username_submit = document.getElementById("username_submit");
 
+var current_user = document.getElementById("current_user");
+var users = document.getElementById("user_list");
+var new_user_mock = document.getElementById("new_user_mock");
+
 var chat_container = document.getElementById("chat_container");
 
 var chat_message_input = document.getElementById("chat_message_input");
@@ -24,6 +28,21 @@ socket.on("message", (data) => {
     }
 })
 
+socket.on("user_connect", (data) => {
+    console.log("CONNECT")
+    if(data.user){
+        add_user_to_user_list(data.user);
+    }
+});
+
+socket.on("user_disconnect", (data) => {
+    console.log("DISCONNECT")
+    if(data.user){
+        document.querySelectorAll(`[data-username='${data.user}']`).forEach((element) => {
+            element.remove();
+        })
+    }
+});
 
 function username_not_avaiable(){
     document.getElementById("username_empty").style.display = "none";
@@ -80,6 +99,23 @@ function fade_in(element, timeout){
     })
 }
 
+function add_user_to_user_list(_user){
+    console.log('dzialam')
+    let user_mock = new_user_mock.cloneNode(true);
+    user_mock.dataset.username = _user;
+    user_mock.innerHTML = _user
+    user_mock.style.display = "";
+    users.appendChild(user_mock);
+}
+
+function fetch_users(){
+    socket.emit('usernames', (data) => {
+        if(data){
+            data.forEach(add_user_to_user_list)
+        }
+    });
+}
+
 function check_username(_username){
     if(!_username){
         username_empty();
@@ -89,6 +125,8 @@ function check_username(_username){
                 username_not_avaiable();
             }else{
                 username = _username;
+                current_user.innerHTML = `${_username} <span class="text-success">(You)</span>`
+                fetch_users();
                 hide_username_picker();
             }
         });  

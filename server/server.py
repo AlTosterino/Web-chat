@@ -33,8 +33,14 @@ async def connect(sid, environ):
 @SIO.event
 async def disconnect(sid):
     global USERNAMES
+    await SIO.emit('user_disconnect', {'user': USERNAMES.get(sid)}, skip_sid=sid)
     USERNAMES.pop(sid, None)
     print('Disconnect ', sid)
+
+@SIO.event
+async def usernames(sid):
+    global USERNAMES
+    return [USERNAMES[username] for username in USERNAMES if username != sid]
 
 @SIO.event
 async def is_username_avaiable(sid, data):
@@ -45,8 +51,7 @@ async def is_username_avaiable(sid, data):
             if value == data:
                 return False
         USERNAMES[sid] = data
-    else:
-        return True
+    await SIO.emit('user_connect', {'user': USERNAMES.get(sid)}, skip_sid=sid)
     return True
 
 @SIO.event

@@ -29,9 +29,14 @@
         </div>
 
         <div id="chat_container" class="row h-100 justify-content-center align-items-center" style="opacity: 0.1; display: none;">
-            <div id="chat_messages_container" class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 h-75 border border-success rounded my-0 py-1" style="overflow: auto;">
-
+            <div class="d-none d-sm-none d-md-block col-md-2 border border-success h-75 p-0" style="overflow: auto;">
+                <ul class="list-group" id="user_list">
+                    <li id="current_user" class="list-group-item px-2"></li>
+                </ul>
             </div>
+
+            <div id="chat_messages_container" class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 h-75 border border-success rounded my-0 py-1" style="overflow: auto;"></div>
+
             <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8 h-10 border border-success rounded my-0 p-0">
                 <div class="input-group">
                     <textarea id="chat_message_input" type="text" class="form-control"></textarea>
@@ -52,6 +57,8 @@
         </div>
     </div>
 </div>
+
+<li id="new_user_mock" data-username="" class="list-group-item px-2" style="display: none;"></li>
 
 </body>
 <script src="vendor/node_modules/jquery/dist/jquery.min.js"></script>
