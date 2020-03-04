@@ -1,4 +1,4 @@
-var socket = io("http://192.168.0.169:5000");
+var socket = io("http://localhost:5000");
 var username = null;
 
 var username_container = document.getElementById("username_container");
@@ -114,11 +114,16 @@ function broadcast_message(_message){
     socket.emit('message', _message);
 }
 
+function clear_chat_message_input(){
+    chat_message_input.value = "";
+    document.getElementsByClassName("emojionearea-editor")[0].innerHTML = "<div><br></div><div><br></div>";
+}
+
 function check_message(_message){
     if(_message){
         broadcast_message(_message, username);
         show_message(_message, username, true);
-        chat_message_input.value = "";
+        clear_chat_message_input();
     }
 }
 
